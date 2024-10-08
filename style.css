@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* Centre horizontalement */
+    justify-content: flex-start; /* Commence en haut de la page */
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+}
+
+h2, h3 {
+    margin-top: 20px;
+}
+
+input[type="file"],
+input[type="text"],
+button {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 22px);
+}
+
+button {
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003d80;
+}
+
+#itemList {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-height: 300px; /* Hauteur maximum pour le défilement */
+    overflow-y: auto;
+    display: block; /* Pour permettre le défilement */
+}
+
+#itemList tr {
+    background-color: #ffffff; /* Couleur de fond par défaut */
+}
+
+#itemList tr:nth-child(even) {
+    background-color: #f0f0f0; /* Couleur de fond pour les lignes paires */
+}
+
+#itemList th, #itemList td {
+    border: 1px solid #ccc;
+    text-align: center; /* Aligner le texte au centre */
+    padding: 8px;
+}
+
+#scanner {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 300px; /* Ajuste la hauteur selon tes besoins */
+    margin-top: 20px; /* Espacement au-dessus du scanner */
+    margin-bottom: 20px; /* Espacement en dessous du scanner */
+    width: 100%; /* S'assurer que le scanner s'adapte à la largeur */
+}
+
+#scanner video {
+    width: 100%; /* Assurer que la vidéo occupe tout l'espace */
+    max-width: 400px; /* Limiter la largeur maximale */
+}
+
+img {
+    display: block;
+    margin: 0 auto; /* Centrer l'image */
+    max-width: 100%; /* Pour que l'image soit responsive */
+}
+
+.container {
+    max-width: 800px; /* Largeur maximum de la page */
+    width: 100%; /* S'assurer que le conteneur prend 100% de la largeur */
+    background-color: #ffffff; /* Fond blanc pour le conteneur */
+    padding: 20px; /* Espacement intérieur */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre autour du conteneur */
+    display: flex; /* Ajout de flexbox pour centrer le contenu */
+    flex-direction: column; /* Aligner les sections verticalement */
+    align-items: center; /* Centrer horizontalement les sections */
+}
+
+/* Nouveau style pour le cadre du scanner */
+.scanner-frame {
+    border: 2px solid #0056b3; /* Couleur de la bordure */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px; /* Espacement intérieur */
+    width: 100%; /* Largeur du cadre */
+    max-width: 450px; /* Largeur maximale du cadre */
+    display: flex; /* Pour centrer le contenu à l'intérieur */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    margin: 20px auto; /* Centre le cadre dans le conteneur */
+}
