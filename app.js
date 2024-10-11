@@ -1,3 +1,5 @@
+// app.js
+
 let foundItems = []; // Tableau pour les items trouvés
 let notFoundItems = []; // Tableau pour les items non trouvés
 let itemsList = []; // Nouvelle variable pour garder trace de tous les items
@@ -5,6 +7,13 @@ let itemsList = []; // Nouvelle variable pour garder trace de tous les items
 // Lire le fichier CSV
 function processCSV() {
     const fileInput = document.getElementById('csvFileInput');
+    
+    // Vérifier si un fichier a été sélectionné
+    if (!fileInput.files.length) {
+        alert("Veuillez sélectionner un fichier CSV.");
+        return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = function(e) {
@@ -12,7 +21,7 @@ function processCSV() {
         const rows = text.split('\n').map(row => row.split(',')); // Séparer les lignes et les colonnes
 
         // Prendre uniquement les lignes à partir de la 8ème (index 7)
-        const items = rows.slice(7); 
+        const items = rows.slice(7);
         displayItems(items); // Afficher les items
     };
 
@@ -37,10 +46,10 @@ function displayItems(items) {
         // Créer les cellules pour chaque colonne
         row.innerHTML = `
             <td>${item[0]}</td> <!-- Code-barres -->
-            <td>${item[1]}</td> <!-- Colonne 2 -->
-            <td>${item[11]}</td> <!-- Colonne 12 -->
-            <td>${item[3]}</td> <!-- Colonne 4 -->
-            <td>${item[2]}</td> <!-- Colonne 3 -->
+            <td>${item[1] || 'N/A'}</td> <!-- Colonne 2 avec valeur par défaut -->
+            <td>${item[11] || 'N/A'}</td> <!-- Colonne 12 avec valeur par défaut -->
+            <td>${item[3] || 'N/A'}</td> <!-- Colonne 4 avec valeur par défaut -->
+            <td>${item[2] || 'N/A'}</td> <!-- Colonne 3 avec valeur par défaut -->
         `;
         row.setAttribute('data-code', item[0]); // Le code-barres est dans la première colonne
         list.appendChild(row);
@@ -48,7 +57,7 @@ function displayItems(items) {
         // Ajoute l'item à la liste des items
         itemsList.push({
             code: item[0],
-            description: item[2],
+            description: item[2] || 'N/A', // Valeur par défaut
             scanned: false // Initialement non scanné
         });
     });
@@ -156,3 +165,6 @@ async function downloadSummary(status) {
     // Télécharger le PDF
     pdf.save(`rapport_items_${status === 'found' ? 'trouvés' : 'non_trouvés'}.pdf`);
 }
+
+// Démarrer le traitement du fichier CSV lorsqu'il est sélectionné
+document.getElementById('csvFileInput').addEventListener('change', processCSV);
